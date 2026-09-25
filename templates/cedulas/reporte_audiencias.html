@@ -1,0 +1,57 @@
+<h1>Reporte General de Audiencias</h1>
+
+<form method="get">
+
+    Expediente:
+    <input type="text" name="expediente">
+
+    Tipo:
+    <input type="text" name="tipo">
+
+    <br><br>
+
+    Fecha desde:
+    <input type="date" name="fecha_desde">
+
+    Fecha hasta:
+    <input type="date" name="fecha_hasta">
+
+    <br><br>
+
+    <button type="submit">
+        Filtrar
+    </button>
+
+    <a href="{% url 'reporte_audiencias_pdf' %}?expediente={{ request.GET.expediente }}&tipo={{ request.GET.tipo }}&fecha_desde={{ request.GET.fecha_desde }}&fecha_hasta={{ request.GET.fecha_hasta }}">
+        <button type="button">
+            Generar PDF
+        </button>
+    </a>
+
+</form>
+
+<hr>
+
+<table border="1">
+
+<tr>
+    <th>Expediente</th>
+    <th>Fecha</th>
+    <th>Hora</th>
+    <th>Tipo</th>
+    <th>Estado</th>
+</tr>
+
+{% for a in audiencias %}
+
+<tr>
+    <td>{{ a.expediente }}</td>
+    <td>{{ a.fecha|date:"d/m/Y" }}</td>
+    <td>{{ a.hora }}</td>
+    <td>{{ a.tipo }}</td>
+    <td>{{ a.estado }}</td>
+</tr>
+
+{% endfor %}
+
+</table>

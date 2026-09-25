@@ -1,0 +1,68 @@
+<h1>Reporte General de Cédulas</h1>
+
+<form method="get">
+
+    Número desde:
+    <input type="text" name="desde">
+
+    Número hasta:
+    <input type="text" name="hasta">
+
+    <br><br>
+
+    Parte notificada:
+    <input type="text" name="parte">
+
+    <br><br>
+
+    Fecha desde:
+    <input type="date" name="fecha_desde">
+
+    Fecha hasta:
+    <input type="date" name="fecha_hasta">
+
+    <br><br>
+
+    <button type="submit">
+        Filtrar
+    
+    </button>
+    <a href="{% url 'reporte_cedulas_pdf' %}?desde={{ request.GET.desde }}&hasta={{ request.GET.hasta }}&parte={{ request.GET.parte }}&fecha_desde={{ request.GET.fecha_desde }}&fecha_hasta={{ request.GET.fecha_hasta }}">
+    <button type="button">
+        Generar PDF
+    </button>
+</a>
+
+</form>
+
+<hr>
+
+<table border="1">
+
+<tr>
+    <th>N°</th>
+    <th>Expediente</th>
+    <th>Parte</th>
+    <th>Tipo</th>
+    <th>Fecha</th>
+</tr>
+
+{% for c in cedulas %}
+
+<tr>
+
+    <td>{{ c.numero_cedula }}</td>
+
+    <td>{{ c.expediente }}</td>
+
+    <td>{{ c.notificoparte }}</td>
+
+    <td>{{ c.tipo_cedula }}</td>
+
+    <td>{{ c.fecha|date:"d/m/Y" }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>

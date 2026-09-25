@@ -1,0 +1,7 @@
+usuario = cedulas
+correo = progintendenciasl@gmail.com
+cont = Luma7078$1   prim may
+
+
+super usu luisb
+cont luma7078
